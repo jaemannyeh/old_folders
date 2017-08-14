@@ -1,0 +1,49 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: YSLog - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\梯彌熱\LOCALS~1\Temp\RSP82.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /I "./h" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /FR"Debug/" /Fp"Debug/YSLog.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\DOCUMENTS AND SETTINGS\梯彌熱\MY DOCUMENTS\頂 濛機\YSLog\src\LogSource.cpp"
+"C:\DOCUMENTS AND SETTINGS\梯彌熱\MY DOCUMENTS\頂 濛機\YSLog\src\Main.cpp"
+"C:\DOCUMENTS AND SETTINGS\梯彌熱\MY DOCUMENTS\頂 濛機\YSLog\src\SimpleLogSink.cpp"
+]
+Creating command line "cl.exe @"C:\DOCUME~1\梯彌熱\LOCALS~1\Temp\RSP82.tmp"" 
+Creating temporary file "C:\DOCUME~1\梯彌熱\LOCALS~1\Temp\RSP83.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:yes /pdb:"Debug/YSLog.pdb" /debug /machine:I386 /out:"Debug/YSLog.exe" /pdbtype:sept 
+".\Debug\LogSource.obj"
+".\Debug\Main.obj"
+".\Debug\SimpleLogSink.obj"
+]
+Creating command line "link.exe @"C:\DOCUME~1\梯彌熱\LOCALS~1\Temp\RSP83.tmp""
+<h3>Output Window</h3>
+Compiling...
+LogSource.cpp
+c:\program files\microsoft visual studio\vc98\include\list(178) : warning C4786: '?rbegin@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@QBE?AV?$reverse_bidirectional_iterator@Vconst_iterator@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@PAULogListener@YSLog@@ABQAU45@PBQAU45@H@2@XZ' : identifier was truncated to '255' characters in the browser information
+        c:\documents and settings\梯彌熱\my documents\頂 濛機\yslog\h\logsource.h(17) : see reference to class template instantiation 'std::list<struct YSLog::LogListener *,class std::allocator<struct YSLog::LogListener *> >' being compiled
+c:\program files\microsoft visual studio\vc98\include\list(181) : warning C4786: '?rend@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@QBE?AV?$reverse_bidirectional_iterator@Vconst_iterator@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@PAULogListener@YSLog@@ABQAU45@PBQAU45@H@2@XZ' : identifier was truncated to '255' characters in the browser information
+        c:\documents and settings\梯彌熱\my documents\頂 濛機\yslog\h\logsource.h(17) : see reference to class template instantiation 'std::list<struct YSLog::LogListener *,class std::allocator<struct YSLog::LogListener *> >' being compiled
+Main.cpp
+c:\program files\microsoft visual studio\vc98\include\list(178) : warning C4786: '?rbegin@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@QBE?AV?$reverse_bidirectional_iterator@Vconst_iterator@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@PAULogListener@YSLog@@ABQAU45@PBQAU45@H@2@XZ' : identifier was truncated to '255' characters in the browser information
+        c:\documents and settings\梯彌熱\my documents\頂 濛機\yslog\h\logsource.h(17) : see reference to class template instantiation 'std::list<struct YSLog::LogListener *,class std::allocator<struct YSLog::LogListener *> >' being compiled
+c:\program files\microsoft visual studio\vc98\include\list(181) : warning C4786: '?rend@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@QBE?AV?$reverse_bidirectional_iterator@Vconst_iterator@?$list@PAULogListener@YSLog@@V?$allocator@PAULogListener@YSLog@@@std@@@std@@PAULogListener@YSLog@@ABQAU45@PBQAU45@H@2@XZ' : identifier was truncated to '255' characters in the browser information
+        c:\documents and settings\梯彌熱\my documents\頂 濛機\yslog\h\logsource.h(17) : see reference to class template instantiation 'std::list<struct YSLog::LogListener *,class std::allocator<struct YSLog::LogListener *> >' being compiled
+SimpleLogSink.cpp
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/YSLog.bsc"  ".\Debug\LogSource.sbr" ".\Debug\Main.sbr" ".\Debug\SimpleLogSink.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+YSLog.exe - 0 error(s), 4 warning(s)
+</pre>
+</body>
+</html>

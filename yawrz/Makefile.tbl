@@ -1,0 +1,75 @@
+
+
+tables: $(TBL_DIR)/cwmp_parameters.db $(TBL_DIR)/cwmp_parameters.pb.cpp
+
+$(TBL_DIR)/cwmp_parameters.pb.cpp : $(TBL_DIR)/cwmp_parameters.pb.cc
+	mv $^ $@
+	
+$(TBL_DIR)/cwmp_parameters.pb.cc: $(TBL_DIR)/cwmp_parameters.proto
+	protoc -I=$(TBL_DIR) --cpp_out=$(TBL_DIR) $^
+	
+$(TBL_DIR)/cwmp_parameters.proto:
+	-rm -f $@
+	@echo "package yawrz;"				>> $@
+	@echo "message Parameter {"			>> $@
+	@echo "	required string name = 1;"	>> $@
+	@echo "	optional string value = 2;"	>> $@
+	@echo "}"							>> $@
+	@echo Device:2.10 Root Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-181-2-10-0-full.xml -pb >> $@
+
+unused21:	
+	@echo Device:2.10 Root Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-181-2-10-0-full.xml -pb >> $@
+	@echo FAPService:2.1 Femto Access Point Service Data Model
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-196-2-1-0-full.xml -pb >> $@
+	@echo StorageService:1.2
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-140-1-2-0-full.xml -pb >> $@
+	@echo STBService:1.4 Service Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-135-1-4-0-full.xml -pb >> $@
+	@echo VoiceService:2.0 Service Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-104-2-0-0-full.xml -pb >> $@
+	
+$(TBL_DIR)/cwmp_parameters.db: $(TBL_DIR)/cwmp_parameters.sql
+	cat $^ | sqlite3 $@
+
+#
+#cp $(TBL_DIR)/cwmp_parameters.csv $(TBL_DIR)/cwmp_parameters.cs2
+#sed -i -e 's/^/INSERT OR IGNORE INTO CWMP_PARAMETERS VALUES(/' $(TBL_DIR)/cwmp_parameters.cs2
+#sed -i -e 's/$$/);/' $(TBL_DIR)/cwmp_parameters.cs2 # dollar sign in sed command pattern inside makefile
+#cat $(TBL_DIR)/cwmp_parameters.cs2					>> $(TBL_DIR)/$@
+#-rm -f $(TBL_DIR)/cwmp_parameters.cs2
+#
+$(TBL_DIR)/cwmp_parameters.sql: $(TBL_DIR)/cwmp_parameters.csv
+	-rm -f $@
+	@echo "PRAGMA foreign_keys=OFF;"					>> $@
+	@echo "BEGIN TRANSACTION;"							>> $@
+	@echo "CREATE TABLE IF NOT EXISTS CWMP_PARAMETERS (">> $@
+	@echo "	NAME TEXT UNIQUE NOT NULL,"					>> $@
+	@echo "	VALUE TEXT,"								>> $@
+	@echo "	STATIC INTEGER DEFAULT 0,"					>> $@
+	@echo "	OPTIONAL INTEGER DEFAULT 0,"				>> $@
+	@echo "	DESCRIPTION TEXT DEFAULT ''"				>> $@
+	@echo ");"											>> $@
+	@echo ".separator \",\""							>> $@
+	@echo ".log off"									>> $@
+	@echo ".import $^ CWMP_PARAMETERS"					>> $@
+	@echo "COMMIT;"										>> $@
+
+$(TBL_DIR)/cwmp_parameters.csv:
+	-rm -f $@
+	@echo Device:2.10 Root Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-181-2-10-0-full.xml -csv >> $@
+	
+unused61:	
+	@echo Device:2.10 Root Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-181-2-10-0-full.xml -csv >> $@
+	@echo FAPService:2.1 Femto Access Point Service Data Model
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-196-2-1-0-full.xml -csv >> $@
+	@echo StorageService:1.2
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-140-1-2-0-full.xml -csv >> $@
+	@echo STBService:1.4 Service Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-135-1-4-0-full.xml -csv >> $@
+	@echo VoiceService:2.0 Service Object definition
+	$(BIN_DIR)/$(PROJECT)_tables -url https://www.broadband-forum.org/cwmp/tr-104-2-0-0-full.xml -csv >> $@
+

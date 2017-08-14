@@ -1,0 +1,65 @@
+
+PP_BASE_PATH = $(PP_HOME)/src/pp_base
+
+PP_BASE_C_FLG_INC_DEF  = $(PP_C_FLG) $(PP_C_INC) $(PP_C_DEF)
+PP_BASE_C_FLG_INC_DEF += -I$(PP_BASE_PATH)
+
+PP_LD_FLG += -ly -lfl
+PP_LD_FLG += -ldb
+
+PP_LEX  = flex
+PP_YACC = bison # byacc
+
+pp_calc.tab.c pp_calc.tab.h: $(PP_BASE_PATH)/pp_calc.y
+	$(PP_YACC) -d $<
+	
+lex.yy.c: $(PP_BASE_PATH)/pp_calc.l
+	$(PP_LEX) $<
+
+pp_calc.tab.o: pp_calc.tab.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+	
+lex.yy.o: lex.yy.c pp_calc.tab.h
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_base.o: $(PP_BASE_PATH)/pp_base.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_config.o: $(PP_BASE_PATH)/pp_config.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_httpd.o: $(PP_BASE_PATH)/pp_httpd.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_shared_tag.o: $(PP_BASE_PATH)/pp_shared_tag.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_shell.o: $(PP_BASE_PATH)/pp_shell.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_telnetd.o: $(PP_BASE_PATH)/pp_telnetd.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+pp_thread.o: $(PP_BASE_PATH)/pp_thread.c
+	$(PP_CC) $(PP_BASE_C_FLG_INC_DEF) -o $@ -c $<
+
+OBJ_FILES += \
+	pp_base.o \
+	pp_calc.tab.o lex.yy.o \
+	pp_config.o \
+	pp_httpd.o \
+	pp_shared_tag.o \
+	pp_shell.o \
+	pp_telnetd.o \
+	pp_thread.o \
+
+DEP_FILES += \
+	pp_base.d \
+	pp_calc.tab.d lex.yy.d \
+	pp_config.d \
+	pp_httpd.d \
+	pp_shared_tag.d \
+	pp_shell.d \
+	pp_telnetd.d \
+	pp_thread.d \
+

@@ -1,0 +1,17 @@
+
+PP_DRAFT_PATH = $(PP_HOME)/src/pp_draft
+
+PP_DRAFT_C_FLG_INC_DEF  = $(PP_C_FLG) $(PP_C_INC) $(PP_C_DEF)
+PP_DRAFT_C_FLG_INC_DEF += -I$(PP_DRAFT_PATH)
+
+%.o : $(PP_DRAFT_PATH)/%.c
+	$(PP_CC) $(PP_DRAFT_C_FLG_INC_DEF) -o $@ -c $<
+
+PP_DRAFT_SRC_FILES = $(wildcard $(PP_DRAFT_PATH)/*.c)
+PP_DRAFT_OBJ_FILES = $(patsubst %.c,%.o,$(notdir $(PP_DRAFT_SRC_FILES)))
+PP_DRAFT_DEP_FILES = $(patsubst %.o,%.d,$(PP_DRAFT_OBJ_FILES))
+
+OBJ_FILES += $(PP_DRAFT_OBJ_FILES)
+
+DEP_FILES += $(PP_DRAFT_DEP_FILES)
+

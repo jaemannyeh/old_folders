@@ -1,0 +1,17 @@
+
+PP_CLASS_PATH = $(PP_HOME)/src/pp_class
+
+PP_CLASS_C_FLG_INC_DEF  = $(PP_C_FLG) $(PP_C_INC) $(PP_C_DEF)
+PP_CLASS_C_FLG_INC_DEF += -I$(PP_CLASS_PATH)
+
+%.o : $(PP_CLASS_PATH)/%.cpp
+	$(PP_CXX) $(PP_CLASS_C_FLG_INC_DEF) -o $@ -c $<
+
+PP_CLASS_SRC_FILES = $(wildcard $(PP_CLASS_PATH)/*.cpp)
+PP_CLASS_OBJ_FILES = $(patsubst %.cpp,%.o,$(notdir $(PP_CLASS_SRC_FILES)))
+PP_CLASS_DEP_FILES = $(patsubst %.o,%.d,$(PP_CLASS_OBJ_FILES))
+
+OBJ_FILES += $(PP_CLASS_OBJ_FILES)
+
+DEP_FILES += $(PP_CLASS_DEP_FILES)
+

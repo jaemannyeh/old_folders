@@ -1,0 +1,63 @@
+
+------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+------------------------------------------------------------------------------
+
+sudo apt-get update
+sudo apt-get upgrade
+
+sudo apt-get install telnetd
+
+------------------------------------------------------------------------------
+
+cat /proc/meminfo
+cat /proc/iomem
+cat /proc/ioports
+
+------------------------------------------------------------------------------
+
+yum install gcc-c++
+
+yum install bison-devel
+
+yum install strace
+
+yum install vim
+
+yum install kernel-devel
+
+make -C /usr/src/kernels/2.6.30.5-43.fc11.i586 M=`pwd` modules
+
+make -C /usr/src/kernels/2.6.30.5-43.fc11.i586 M=`pwd` clean
+
+------------------------------------------------------------------------------
+
+about pp
+
+what is pp? what can it do for you?
+
+pp is a source code (not a library) designed to help programmers create
+flexible applications. Using pp in an application allows programmers to write
+init code, interpreter and users to use them to have an application fit their
+need.
+
+pp is not a programming language
+
+------------------------------------------------------------------------------
+
+http://blog.avirtualhome.com/2008/10/28/how-to-compile-a-custom-kernel-for-ubuntu-intrepid/
+
+apt-get install fakeroot build-essential
+apt-get install crash kexec-tools makedumpfile
+apt-get build-dep linux
+
+mkdir kernel-2.6.27-7
+cd kernel-2.6.27-7
+
+apt-get build-dep linux-image-$(uname -r)
+apt-get source linux-image-$(uname -r)
+
+------------------------------------------------------------------------------
+
