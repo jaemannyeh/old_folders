@@ -1,0 +1,92 @@
+
+BS_C_FLG_INC_DEF   = # -I../../src/bse/inc
+
+C_FLG_INC_DEF     += -I../../src/bse/inc
+
+BS_SRC_PATH        = ../../src/bse/src
+
+BS_OBJ_FILES       =
+
+#######################################################################
+
+BS_OBJ_FILES     += bs_debug.o
+bs_debug.o : $(BS_SRC_PATH)/bs_debug.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_generic_wait_queue.o
+bs_generic_wait_queue.o : $(BS_SRC_PATH)/bs_generic_wait_queue.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_hash.o
+bs_hash.o : $(BS_SRC_PATH)/bs_hash.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_init.o
+bs_init.o : $(BS_SRC_PATH)/bs_init.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_list.o
+bs_list.o : $(BS_SRC_PATH)/bs_list.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_log.o
+bs_log.o : $(BS_SRC_PATH)/bs_log.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_once.o
+bs_once.o : $(BS_SRC_PATH)/bs_once.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_os.o
+bs_os.o : $(BS_SRC_PATH)/bs_os.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_tmo.o
+bs_tmo.o : $(BS_SRC_PATH)/bs_tmo.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_var.o
+bs_var.o : $(BS_SRC_PATH)/bs_var.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+#######################################################################
+
+BS_OBJ_FILES     += bs_builtin_test.o
+bs_builtin_test.o : $(BS_SRC_PATH)/bs_builtin_test.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+
+BS_OBJ_FILES     += bs_shellcmd.o
+bs_shellcmd.o : $(BS_SRC_PATH)/bs_shellcmd.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+#######################################################################
+
+BS_OBJ_FILES     += bs_dhcpc.o
+bs_dhcpc.o : $(BS_SRC_PATH)/bs_dhcpc.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_tftpc.o
+bs_tftpc.o : $(BS_SRC_PATH)/bs_tftpc.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+BS_OBJ_FILES     += bs_tftps.o
+bs_tftps.o : $(BS_SRC_PATH)/bs_tftps.c
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+#######################################################################
+
+BS_OBJ_FILES     += BsInit.o
+BsInit.o : $(BS_SRC_PATH)/BsInit.cpp
+	$(CC) $(C_FLG_INC_DEF) $(BS_C_FLG_INC_DEF) -o $@ -c $<
+
+#######################################################################
+
+BS_DEP_FILES = $(patsubst %.o,%.d,$(BS_OBJ_FILES))
+
+OBJ_FILES += \
+	$(BS_OBJ_FILES)
+
+DEP_FILES += \
+	$(BS_DEP_FILES)
+
